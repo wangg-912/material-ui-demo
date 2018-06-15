@@ -1,0 +1,61 @@
+{
+  "materail-ui": {
+    "configuration": {
+      "config": {
+        "webpackOptions": {
+          "module": {
+            "rules": [
+              {
+                "test": "/\\.js$/",
+                "exclude": "/node_modules/",
+                "loader": "'babel-loader'",
+                "options": {
+                  "presets": [
+                    "'env'"
+                  ]
+                }
+              },
+              {
+                "test": "/\\.(less|css)$/",
+                "use": [
+                  {
+                    "loader": "'css-loader'",
+                    "options": {
+                      "sourceMap": true
+                    }
+                  },
+                  {
+                    "loader": "'less-loader'",
+                    "options": {
+                      "sourceMap": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "plugins": [
+            "new UglifyJSPlugin()"
+          ],
+          "entry": {
+            "index": "\"index.jsx.js\""
+          },
+          "output": {
+            "filename": "'[name].[chunkhash].js'",
+            "chunkFilename": "'[name].[chunkhash].js'",
+            "path": "path.resolve(__dirname, 'default')"
+          }
+        },
+        "topScope": [
+          "const webpack = require('webpack')",
+          "const path = require('path')",
+          "/*\n * We've enabled UglifyJSPlugin for you! This minifies your app\n * in order to load faster and run less javascript.\n *\n * https://github.com/webpack-contrib/uglifyjs-webpack-plugin\n *\n */",
+          "const UglifyJSPlugin = require('uglifyjs-webpack-plugin');",
+          "\n",
+          "/*\n * We've enabled commonsChunkPlugin for you. This allows your app to\n * load faster and it splits the modules you provided as entries across\n * different bundles!\n *\n * https://webpack.js.org/plugins/commons-chunk-plugin/\n *\n */"
+        ],
+        "configName": "default"
+      }
+    }
+  }
+}
